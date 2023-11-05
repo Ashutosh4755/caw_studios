@@ -6,6 +6,7 @@ import pytest
 from Common import common
 
 driver = webdriver.Chrome()
+driver.maximize_window()
 driver.implicitly_wait(10)
 driver.get("https://testpages.herokuapp.com/styled/tag/dynamic-table.html")
 
@@ -30,6 +31,7 @@ def test_validate_table_data():
     #And click on Refresh Table button.
     # 4.The entered data will be populated in the table.
     driver.find_element(By.XPATH,refresh_table_button).click()
+    time.sleep(5)
     # 5. Now assert the data you have stored with the data that is populated in the UI table. Both data should match.
     cols = driver.find_elements(By.XPATH,"//table[@id='dynamictable']/tr/th")
     len_of_cols = len(cols)
@@ -52,7 +54,7 @@ def test_validate_table_data():
                 d[lst[j - 1]] = driver.find_element(By.XPATH,"//table[@id='dynamictable']/tr[" + str(i) + "]/td" + "[" + str(j) + "]").text
         l1.append(d)
         d = {}
-    actual_dynamic_table_value = str(l1).replace("'",'"')
+    actual_dynamic_table_value = str(l1).replace("'",'"') + "adfasdfas"
     #called method to validate dynamic table
     common_obj.validate_dynamic_table(expected_dynamic_table_value,actual_dynamic_table_value)
     driver.close()
