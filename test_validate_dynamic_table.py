@@ -54,7 +54,7 @@ def test_validate_table_data():
                 d[lst[j - 1]] = driver.find_element(By.XPATH,"//table[@id='dynamictable']/tr[" + str(i) + "]/td" + "[" + str(j) + "]").text
         l1.append(d)
         d = {}
-    actual_dynamic_table_value = str(l1).replace("'",'"') + "adfasdfas"
+    actual_dynamic_table_value = str(l1).replace("'",'"')
     #called method to validate dynamic table
     common_obj.validate_dynamic_table(expected_dynamic_table_value,actual_dynamic_table_value)
     driver.close()
